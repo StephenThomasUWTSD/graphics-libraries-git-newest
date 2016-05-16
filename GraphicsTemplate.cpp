@@ -22,11 +22,11 @@ extern cRenderClass graphics;
 	// set a colour
 	graphics.setColour(1, 1, 1);
 
-	
+	//graphics.runOnce = 0;
 	vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
 
 	graphics.drawCloud(cloud);
-
+	//graphics.runOnce = 1;
 	//cRenderClass::Point jarvisMarchHull2(graphics.points);
 
 	//cRenderClass::Point drawConvex(graphics.points);
@@ -39,7 +39,7 @@ extern cRenderClass graphics;
 
 	graphics.render();
 }
-extern void update();
+//extern void update();
 void update()
 {
 	// add any update code here...
@@ -55,9 +55,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	// init glut stuff..
 	graphics.create(argc, argv);
-
-	std::vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
-	graphics.drawCloud(cloud); 
+	//graphics.setColour(1, 1, 1);
+	//vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
+	//graphics.drawCloud(cloud); 
 	// good place for one-off initialisations and objects creation..
 	
 	// enter game loop..

@@ -43,7 +43,7 @@ public:
 
 	//vector<cRenderClass::Point>
 	void jarvisMarchHull2(vector<Point>& points);
-
+	int runOnce;
 private:
 	sRGB	m_colour;
 	int		 m_sw, m_sh;

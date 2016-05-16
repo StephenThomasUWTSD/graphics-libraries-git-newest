@@ -344,27 +344,38 @@ void cRenderClass::midPoint(int Radius, int xC, int yC)
 
 vector<cRenderClass::Point> cRenderClass::pointCloud(int numPoints)
 {
-	// Fill points vector with random coords
-	srand(static_cast <unsigned> (time(0)));
-	vector<Point> points;
+	//if (graphics.runOnce == 0) {
+		// Fill points vector with random coords
+		srand(static_cast <unsigned> (time(0)));
+		vector<Point> points;
 
-	for (int i = 0; i < numPoints; i++)
-	{
-		points.push_back
-		({
-		    static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / SCREEN_WIDTH)),
-			static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / SCREEN_WIDTH))
-		});
-	}
+		for (int i = 0; i < numPoints; i++)
+		{
+			points.push_back
+			({
+				static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / SCREEN_WIDTH)),
+				static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / SCREEN_WIDTH))
+			});
+			
+		}
+		//graphics.runOnce = 1;
+		
+	//}
+	
 	return points;
 }
 
 void cRenderClass::drawCloud(vector<Point> &points)
 {
-	for (unsigned int i = 0; i < points.size(); i++)
-	{
-		drawPixel(points[i].x, points[i].y);
-	}
+	//if (graphics.runOnce == 0) {
+		for (unsigned int i = 0; i < points.size(); i++)
+		{
+			drawPixel(points[i].x, points[i].y);
+
+		}
+		//graphics.runOnce = 1;
+	//}
+	
 }
 
 //std::vector<cRenderClass::Point> points;
