@@ -407,7 +407,7 @@ void cRenderClass::jarvisMarchHull2(vector<Point>& points)//this seems really me
 	vector<int> next(numPoints);
 	for (int i = 0; i < numPoints; i++)
 	{
-		//next(numPoints - 1); // this is wrong fuck it for now
+		int next(numPoints - 1); // this is wrong fuck it for now
 	}
 	//return points;
 }

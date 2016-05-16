@@ -10,7 +10,7 @@
 // externals 
 //////////////////////////////////////////////////////////////////////////////////////////
 extern cRenderClass graphics;
-
+vector<cRenderClass::Point> cloud;
 //////////////////////////////////////////////////////////////////////////////////////////
 // update() - update function
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -23,14 +23,17 @@ extern cRenderClass graphics;
 	graphics.setColour(1, 1, 1);
 
 	//graphics.runOnce = 0;
-	vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
-
+	//vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
+	
 	graphics.drawCloud(cloud);
 	//graphics.runOnce = 1;
-	//cRenderClass::Point jarvisMarchHull2(graphics.points);
-
-	//cRenderClass::Point drawConvex(graphics.points);
-
+	/*
+	cRenderClass::Point leftMostX(graphics.points);
+	cRenderClass::Point jarvisMarchHull2(graphics.points);
+	cRenderClass::Point turnParam(graphics.points);
+	cRenderClass::Point drawConvex(graphics.points);
+	cRenderClass::Point generateConvex2(graphics.points);
+	*/
 	// draw to an off screen buffer
 	//graphics.drawPixel( 250, 250 );
 	//graphics.midPoint(222, 222, 50);
@@ -55,6 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	// init glut stuff..
 	graphics.create(argc, argv);
+	cloud = graphics.pointCloud(200);
 	//graphics.setColour(1, 1, 1);
 	//vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
 	//graphics.drawCloud(cloud); 
