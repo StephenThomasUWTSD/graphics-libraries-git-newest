@@ -41,8 +41,8 @@ public:
 	vector<Point>pointCloud(int);
 	void drawCloud(vector<Point>& points);
 
-
-	vector<Point> jarvisMarchHull2(vector<Point>& points);
+	//vector<cRenderClass::Point>
+	void jarvisMarchHull2(vector<Point>& points);
 
 private:
 	sRGB	m_colour;

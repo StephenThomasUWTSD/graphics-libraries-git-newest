@@ -24,7 +24,7 @@ extern cRenderClass graphics;
 
 	
 	vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
-	
+
 	graphics.drawCloud(cloud);
 
 	//cRenderClass::Point jarvisMarchHull2(graphics.points);
@@ -55,6 +55,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	// init glut stuff..
 	graphics.create(argc, argv);
+
 	std::vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
 	graphics.drawCloud(cloud); 
 	// good place for one-off initialisations and objects creation..

@@ -383,8 +383,8 @@ int cRenderClass::orientation(Point p, Point q, Point r)
 	return (val > 0) ? 1 : 2; // clock or counterclock wise
 	
 }
-
-vector<cRenderClass::Point> cRenderClass::jarvisMarchHull2(vector<Point>& points)//this seems really messy
+//vector<cRenderClass::Point>
+void cRenderClass::jarvisMarchHull2(vector<Point>& points)//this seems really messy
 {
 	int numPoints = points.size();
 
@@ -398,7 +398,7 @@ vector<cRenderClass::Point> cRenderClass::jarvisMarchHull2(vector<Point>& points
 	{
 		//next(numPoints - 1); // this is wrong fuck it for now
 	}
-	return points;
+	//return points;
 }
    
 // Find the leftmost point
@@ -447,7 +447,7 @@ void cRenderClass::turnParam(vector<Point>& points)
 	p = q; // Set p as q for next iteration
 	} while (p != q);
 
-	return NULL;
+	//return 0;
 }
 
 // until reach the start point again
