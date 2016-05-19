@@ -145,7 +145,6 @@ void cRenderClass::setColour(float r, float g, float b)
 	m_colour.g = g;
 	m_colour.b = b;
 }
-//im gonna check the other files im sure someorf this was in graphics template
 // winReshapeFunc() - gets called initially and whenever the window get resized
 // resizing has been locked
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +181,50 @@ void cRenderClass::line(int x1, int y1, int x2, int y2)
 		drawPixel(x, 15);
 	}
 }
+void cRenderClass::chozabusTriangle(float x1, float y1, float x2, float y2, float x3, float y3)
+{
+	// Bresenham's line algorithm, extended to draw triangles, in a not-super-optimal way
+	const bool steep = (fabs(y2 - y1) > fabs(x2 - x1));
+	if (steep)
+	{
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+	}
 
+	if (x1 > x2)
+	{
+		std::swap(x1, x2);
+		std::swap(y1, y2);
+	}
+
+	const float dx = x2 - x1;
+	const float dy = fabs(y2 - y1);
+
+	float error = dx / 2.0f;
+	const int ystep = (y1 < y2) ? 1 : -1;
+	int y = (int)y1;
+
+	const int maxX = (int)x2;
+
+	for (int x = (int)x1; x<maxX; x++)
+	{
+		if (steep)
+		{
+			bresenhamsLine(y, x, x3, y3);
+		}
+		else
+		{
+			bresenhamsLine(x, y, x3, y3);
+		}
+
+		error -= dy;
+		if (error < 0)
+		{
+			y += ystep;
+			error += dx;
+		}
+	}
+}
 void cRenderClass::bresenhamsLine(float x1, float y1, float x2, float y2)
 {
 	// Bresenham's line algorithm
@@ -344,7 +386,6 @@ void cRenderClass::midPoint(int Radius, int xC, int yC)
 
 vector<cRenderClass::Point> cRenderClass::pointCloud(int numPoints)
 {
-	//if (graphics.runOnce == 0) {
 		// Fill points vector with random coords
 		srand(static_cast <unsigned> (time(0)));
 		vector<Point> points;
@@ -358,27 +399,18 @@ vector<cRenderClass::Point> cRenderClass::pointCloud(int numPoints)
 			});
 			
 		}
-		//graphics.runOnce = 1;
-		
-	//}
-	
 	return points;
 }
 
 void cRenderClass::drawCloud(vector<Point> &points)
 {
-	//if (graphics.runOnce == 0) {
-		for (unsigned int i = 0; i < points.size(); i++)
-		{
-			drawPixel(points[i].x, points[i].y);
+	for (unsigned int i = 0; i < points.size(); i++)
+	{
+		drawPixel(points[i].x, points[i].y);
 
-		}
-		//graphics.runOnce = 1;
-	//}
-	
+	}
 }
 
-//std::vector<cRenderClass::Point> points;
 // To find orientation of ordered triplet (p, q, r).
 // The function returns following values
 // 0 --> p, q and r are colineara
@@ -394,7 +426,7 @@ int cRenderClass::orientation(Point p, Point q, Point r)
 	return (val > 0) ? 1 : 2; // clock or counterclock wise
 	
 }
-//vector<cRenderClass::Point>
+
 void cRenderClass::jarvisMarchHull2(vector<Point>& points)//this seems really messy
 {
 	int numPoints = points.size();
@@ -407,9 +439,8 @@ void cRenderClass::jarvisMarchHull2(vector<Point>& points)//this seems really me
 	vector<int> next(numPoints);
 	for (int i = 0; i < numPoints; i++)
 	{
-		int next(numPoints - 1); // this is wrong fuck it for now
+		 next.at(numPoints - 1); // this is wrong fuck it for now
 	}
-	//return points;
 }
    
 // Find the leftmost point
@@ -417,8 +448,6 @@ void cRenderClass::leftMostX(vector<Point>& points)
 {	
 	int z;
 	vector<Point>::iterator it;
-	//auto smallestX = {std::min_element(points.begin(), points.end(),{ Point const& hs, Point const& rhs  return lhs.x < rhs.x; });
-	
 	int numPoints = points.size();
 	int l = 0;
 	
@@ -433,9 +462,6 @@ void cRenderClass::leftMostX(vector<Point>& points)
 
 void cRenderClass::turnParam(vector<Point>& points)
 {
-	//vector<Point>::iterator it;
-	//auto biggestX = std::max_element(points.begin(), points.end(),
-	//	[](Point const& lhs, Point const& rhs) {return lhs.x < rhs.x; });
 	int numPoints = points.size();
 	int l=l;
 	// Start from leftmost point, keep moving counterclockwise
@@ -458,59 +484,7 @@ void cRenderClass::turnParam(vector<Point>& points)
 	p = q; // Set p as q for next iteration
 	} while (p != q);
 
-	//return 0;
 }
-
-// until reach the start point again
-
-//int p = /*l,*/ q;
-
-	
-	
-	// Search for a point 'q' such that orientation(p, i, q) is
-
-	
-//void cRenderClass::DirectionLR(vector<Point>& points)
-//{
-//	vector.push_back({
-//val = (w.y2 - x.y1) * (w.x2 - w.x1)
-//	});
-//}
-	
-	
-
-	
-	
-	
-	
-	// counterclockwise for all points '
-	/*q = (p + 1) % n;
-
-	for (int i = 0; i < n; i++)
-
-		if (orientation(points[p], points[i], points[q]) == 2)
-
-			q = i;  
-
-
-
-
-
-
-
-
-	next[p] = q; // Add q to result as a next point of p
-
-	p = q; // Set p as q for next iteration
-
-}
-
-while (p != l);
-*/
-
-
-
-
 
 void cRenderClass::drawConvex(vector<Point>& points) 
 {
@@ -530,7 +504,30 @@ void cRenderClass::generateConvex2(vector<Point>& points)
 	}
 }
 
-
+void cRenderClass::triangle(int x1, int y1, int x2,int y2, int x3, int y3)
+{
+	
+	 bresenhamsLine(x1, y1, x2, y2);
+	 bresenhamsLine(x2,y2,x3,y3);
+	 bresenhamsLine(x3, y3, x1, y1);
+	
+}
+/*
+void cRenderClass::fillAlgorithm(int x, int y, int old, int fill)
+{
+	int current;
+	current = getpixel(x, y);
+	if (current == old)
+	{
+		drawPixel(x, y, fill);
+		delay(1);
+		floodFill(x + 1, y, old, fill);
+		floodFill(x - 1, y, old, fill);
+		floodFill(x, y + 1, old, fill);
+		floodFill(x, y - 1, old, fill);
+	}
+}
+*/
 /*
 void cRenderClass::jarvisMarchHull(std::vector<Point> points)
 {

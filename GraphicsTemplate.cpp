@@ -10,7 +10,7 @@
 // externals 
 //////////////////////////////////////////////////////////////////////////////////////////
 extern cRenderClass graphics;
-vector<cRenderClass::Point> cloud;
+vector<cRenderClass::Point> cloud,points;
 //////////////////////////////////////////////////////////////////////////////////////////
 // update() - update function
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -24,22 +24,16 @@ vector<cRenderClass::Point> cloud;
 
 	//graphics.runOnce = 0;
 	//vector<cRenderClass::Point> cloud = graphics.pointCloud(200);
-	
-	graphics.drawCloud(cloud);
-	//graphics.runOnce = 1;
-	/*
-	cRenderClass::Point leftMostX(graphics.points);
-	cRenderClass::Point jarvisMarchHull2(graphics.points);
-	cRenderClass::Point turnParam(graphics.points);
-	cRenderClass::Point drawConvex(graphics.points);
-	cRenderClass::Point generateConvex2(graphics.points);
-	*/
+	//graphics.DDALine(10, 30, 50, 20);
+	//graphics.drawCloud(cloud);
+	//graphics.jarvisMarchHull2(vector<cRenderClass::Point>&points);
+	//graphics.jarvisMarchHull2( &points);
 	// draw to an off screen buffer
 	//graphics.drawPixel( 250, 250 );
 	//graphics.midPoint(222, 222, 50);
 	//
 	// render the scene
-
+	graphics.chozabusTriangle(400, 20, 360, 200, 480, 100);
 	graphics.render();
 }
 //extern void update();
